@@ -1,0 +1,62 @@
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  font-family: 'Poppins', 'Roboto', sans-serif;
+}
+
+/* ensure MUI container won't add side paddings we don't want */
+.MuiContainer-root {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+
+
+.dashboard h1 {
+  text-align: center;
+  margin: 20px;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.weather-card {
+  background: #333;
+  border-radius: 16px;
+  padding: 20px;
+  width: 250px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.weather-card:hover { transform: translateY(-5px); }
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-body { margin-top: 10px; }
+
+.city-detail {
+  text-align: center;
+  padding: 40px;
+}
+.detail-card {
+  background: #333;
+  border-radius: 16px;
+  padding: 30px;
+  display: inline-block;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}

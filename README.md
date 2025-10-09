@@ -1,4 +1,4 @@
-# BlueShift-Weather-App# Fidenz Weather - Full Stack Assignment
+# Fidenz-Weather-App# Fidenz Weather - Full Stack Assignment
 
 ## Overview
 Simple full-stack app to display weather by city. Backend caches OpenWeatherMap responses for 5 minutes. Frontend protected by Auth0.

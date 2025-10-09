@@ -1,24 +1,21 @@
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Node modules
+Client/node_modules/
+Server/node_modules/
 
 # Environment variables
-.env
-.env.local
-.env.*.local
+Client/.env
+Server/.env
 
-# Build output
-dist/
-build/
-coverage/
+# Build outputs
+Client/build/
+Server/build/
+Server/dist/
 
 # Logs
-logs
+logs/
 *.log
 logs/*
-pids
+pids/
 *.pid
 *.seed
 *.pid.lock
@@ -29,15 +26,6 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
-
-# React specific
-Client/node_modules/
-Client/build/
-
-# Server specific
-Server/node_modules/
-Server/dist/
-Server/build/
 
 # Cache
 .cache/

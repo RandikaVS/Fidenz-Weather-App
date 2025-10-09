@@ -1,33 +1,26 @@
 const cache = require("../cache");
 const fetch = require("node-fetch");
 const asyncHandler = require("express-async-handler");
+const { COLORS } = require("../utils/colors");
 
-const OPENWEATHER_KEY = process.env.OPENWEATHER_KEY;
-if (!OPENWEATHER_KEY) throw new Error("OPENWEATHER_KEY not set");
-
-const COLORS = [
-  ["#42a5f5", "#1e88e5"], 
-  ["#7e57c2", "#6a1b9a"], 
-  ["#ffb74d", "#f57c00"], 
-  ["#ef5350", "#c62828"], 
-  ["#4caf50", "#43a047"], 
-  ["#26c6da", "#00acc1"], 
-  ["#ab47bc", "#8e24aa"], 
-  ["#ffa726", "#fb8c00"],
-];
 
 const fetchWeather = asyncHandler(async (cityId, index = 0) => {
+  
   const cacheKey = `weather:${cityId}`;
+
   const cached = cache.get(cacheKey);
   if (cached) return cached;
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${OPENWEATHER_KEY}&units=metric`;
+  const OPENWEATHER_KEY = process.env.OPENWEATHER_KEY;
+  const ROOT_URL = process.env.OPENWEATHER_API_ROOT;
+  if (!OPENWEATHER_KEY || !ROOT_URL) throw new Error("OPENWEATHER_KEY or ROOT_URL not set");
+
+  const url = `${ROOT_URL}?id=${cityId}&appid=${OPENWEATHER_KEY}&units=metric`;
   const res = await fetch(url);
 
   if (!res.ok) throw new Error(`OpenWeather error ${res.status}`);
   const json = await res.json();
 
-  // Pick a color from COLORS array in cyclic manner
   const colorSet = COLORS[index % COLORS.length];
 
   const result = {
@@ -45,13 +38,13 @@ const fetchWeather = asyncHandler(async (cityId, index = 0) => {
     sunrise: new Date(json.sys?.sunrise * 1000).toLocaleTimeString(),
     sunset: new Date(json.sys?.sunset * 1000).toLocaleTimeString(),
     icon: json.weather?.[0]?.main.toLowerCase(),
-    color: colorSet[0], // primary color
-    colorSecondary: colorSet[1], // secondary color
+    color: colorSet[0], 
+    colorSecondary: colorSet[1],
     time: new Date(json.dt * 1000).toLocaleString(),
     city: json.name,
   };
 
-  cache.set(cacheKey, result, 300); // Cache for 5 minutes
+  cache.set(cacheKey, result, 300); 
   return result;
 });
 

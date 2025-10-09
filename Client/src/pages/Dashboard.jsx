@@ -6,8 +6,6 @@ import { useSnackbar } from 'src/components/snackbar';
 
 export default function Dashboard() {
 
-
-
   const { enqueueSnackbar } = useSnackbar()
 
   const [weatherList, setWeatherList] = useState([]);

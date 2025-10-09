@@ -5,6 +5,35 @@ const axiosInstance = axios.create({
   baseURL: BASE_URL,
 });
 
+let setLoading = null;
+
+export const setLoadingSetter = (setter) => {
+  setLoading = setter;
+};
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    setLoading && setLoading(true);
+    return config;
+  },
+  (error) => {
+    setLoading && setLoading(false);
+    return Promise.reject(error);
+  }
+);
+
+axiosInstance.interceptors.response.use(
+  (response) => {
+    setLoading && setLoading(false);
+    return response;
+  },
+  (error) => {
+    setLoading && setLoading(false);
+    return Promise.reject(error);
+  }
+);
+
+
 axiosInstance.interceptors.request.use((config) => {
   const token = sessionStorage.getItem('accessToken');
   if (token) {
@@ -12,6 +41,7 @@ axiosInstance.interceptors.request.use((config) => {
   }
   return config;
 });
+
 
 axiosInstance.interceptors.response.use(
   (res) => res,
@@ -26,7 +56,6 @@ export const fetcher = async (args) => {
   return res.data;
 };
 
-// API endpoints
 export const endpoints = {
   getAllWeather: '/weather/all',
   getCityWeather: (id) => `/weather/id/${id}`,

@@ -109,13 +109,13 @@ export default function CityDetail() {
             backgroundColor: `${weather.color}CC`,
             backgroundImage: ` url('src/assets/Cloudy1.svg')`,
             backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
             backgroundBlendMode: "overlay",
-            p: 4,
-            textAlign: "center",
-            color: "white",
+            p: 3,
             position: "relative",
+            borderTopLeftRadius: 4,
+            borderTopRightRadius: 4,
           }}
         >
           <IconButton
@@ -131,13 +131,14 @@ export default function CityDetail() {
           >
             <ArrowBackIcon />
           </IconButton>
-
-          <Typography variant="h6" sx={{ fontWeight: 700 }}>
-            {weather.city}
-          </Typography>
-          <Typography variant="caption" sx={{ opacity: 0.8 }}>
-            {formatTime(weather.time)}
-          </Typography>
+          <div style={{ textAlign: "center" }}>
+            <Typography variant="h6" sx={{ fontWeight: 700 }}>
+              {weather.city}
+            </Typography>
+            <Typography variant="caption" sx={{ opacity: 0.8 }}>
+              {formatTime(weather.time)}
+            </Typography>
+          </div>
 
           <Grid
             container
@@ -173,6 +174,10 @@ export default function CityDetail() {
             backgroundColor: "#2C3E50",
             color: "white",
             p: 3,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 3,
           }}
         >
           <Grid container spacing={2} alignItems="center">

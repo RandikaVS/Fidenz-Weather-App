@@ -30,6 +30,7 @@ export default function WeatherCard({ weather, onClose }) {
   };
 
   return (
+    
     <Card
       onClick={handleCardClick}
       sx={{
@@ -44,21 +45,21 @@ export default function WeatherCard({ weather, onClose }) {
         flexDirection: "column",
       }}
     >
-      {/* Top Section */}
-        <Box
-          sx={{
-            backgroundColor: `${weather.color}CC`,
-            backgroundImage: ` url('src/assets/Cloudy1.svg')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundBlendMode: "overlay",
-            p: 3,
-            position: "relative",
-            borderTopLeftRadius: 4,
-            borderTopRightRadius: 4,
-          }}
-        >
+
+      <Box
+        sx={{
+          backgroundColor: `${weather.color}CC`,
+          backgroundImage: ` url('src/assets/Cloudy1.svg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundBlendMode: "overlay",
+          p: 3,
+          position: "relative",
+          borderTopLeftRadius: 4,
+          borderTopRightRadius: 4,
+        }}
+      >
         <IconButton
           size="small"
           sx={{
@@ -138,16 +139,14 @@ export default function WeatherCard({ weather, onClose }) {
           </Box>
         </Box>
       </Box>
-      {/* Top Section */}
 
-      {/* Bottom Section */}
-        <CardContent
-          sx={{
-            backgroundColor: "#2C3E50",
-            color: "white",
-            p: 2,
-          }}
-        >
+      <CardContent
+        sx={{
+          backgroundColor: "#2C3E50",
+          color: "white",
+          p: 2,
+        }}
+      >
 
         <Box
           sx={{
@@ -172,7 +171,7 @@ export default function WeatherCard({ weather, onClose }) {
 
         {!isMobile && <Divider orientation="vertical" flexItem sx={{ bgcolor: "rgba(255,255,255,0.3)" }} />}
 
-         <Grid item xs display="flex" flexDirection="column" alignItems="center" gap={0.5}>
+          <Grid item xs display="flex" flexDirection="column" alignItems="center" gap={0.5}>
             
             <NavigationIcon
               sx={{
@@ -200,9 +199,9 @@ export default function WeatherCard({ weather, onClose }) {
             </Grid>
           </Grid>
         </Box>
-        </CardContent>
-        {/* Bottom Section */}
-      
+
+      </CardContent>
+
     </Card>
   );
 }

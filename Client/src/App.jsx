@@ -16,16 +16,16 @@ export default function App() {
           <Auth0TokenSetter/>
             <ProtectedRoute>
               <Layout>
-                <Routes>
-                    <Route
-                      path="/"
-                      element={<Dashboard />}
-                    />
-                    <Route
-                      path="/weather/city/:cityId"
-                      element={ <CityDetail />}
-                    />
-                </Routes>
+                  <Routes>
+                      <Route
+                        path="/"
+                        element={<Dashboard />}
+                      />
+                      <Route
+                        path="/weather/city/:cityId"
+                        element={ <CityDetail />}
+                      />
+                  </Routes>
               </Layout>
             </ProtectedRoute>
         </Auth0ProviderWithConfig>

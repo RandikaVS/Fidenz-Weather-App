@@ -6,14 +6,14 @@ const OPENWEATHER_KEY = process.env.OPENWEATHER_KEY;
 if (!OPENWEATHER_KEY) throw new Error("OPENWEATHER_KEY not set");
 
 const COLORS = [
-  ["#42a5f5", "#1e88e5"], // Blue
-  ["#7e57c2", "#6a1b9a"], // Purple
-  ["#ffb74d", "#f57c00"], // Orange
-  ["#ef5350", "#c62828"], // Red
-  ["#4caf50", "#43a047"], // Green
-  ["#26c6da", "#00acc1"], // Cyan
-  ["#ab47bc", "#8e24aa"], // Pink
-  ["#ffa726", "#fb8c00"], // Deep Orange
+  ["#42a5f5", "#1e88e5"], 
+  ["#7e57c2", "#6a1b9a"], 
+  ["#ffb74d", "#f57c00"], 
+  ["#ef5350", "#c62828"], 
+  ["#4caf50", "#43a047"], 
+  ["#26c6da", "#00acc1"], 
+  ["#ab47bc", "#8e24aa"], 
+  ["#ffa726", "#fb8c00"],
 ];
 
 const fetchWeather = asyncHandler(async (cityId, index = 0) => {

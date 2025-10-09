@@ -1,0 +1,11 @@
+#home-page {
+  padding: 20;
+  background-image:
+  url('src/assets/Cloudy1.svg'),
+  linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+  background-attachment: fixed;
+}

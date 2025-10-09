@@ -1,9 +1,12 @@
-/* eslint-disable no-undef */
 import React from "react";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from 'src/components/snackbar';
+
 
 const Auth0ProviderWithConfig = ({ children }) => {
+
+  const { enqueueSnackbar } = useSnackbar()
 
   const domain = import.meta.env.VITE_AUTH0_DOMAIN;
   const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
@@ -12,6 +15,7 @@ const Auth0ProviderWithConfig = ({ children }) => {
   const navigate = useNavigate();
 
   if (!domain || !clientId) {
+    enqueueSnackbar('⚠️ Auth0 configuration!', { variant: 'error' });
     return <div>⚠️ Auth0 not configured</div>;
   }
 
@@ -23,6 +27,8 @@ const Auth0ProviderWithConfig = ({ children }) => {
         redirect_uri: window.location.origin,
         audience,
       }}
+      cacheLocation="localstorage"
+      useRefreshTokens={true} 
       onRedirectCallback={(appState) => {
         navigate(appState?.returnTo || window.location.pathname);
       }}

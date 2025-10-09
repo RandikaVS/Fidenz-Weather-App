@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CircularProgress, Box, Button } from "@mui/material";
+import { useSnackbar } from 'src/components/snackbar';
+import { setSession } from "src/utils/session";
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, isLoading, getAccessTokenSilently, loginWithRedirect } = useAuth0();
+  const [tokenLoading, setTokenLoading] = useState(true);
+  const { enqueueSnackbar } = useSnackbar();
 
-  if (isLoading) {
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        if (isAuthenticated) {
+          const token = await getAccessTokenSilently();
+          if (!token) {
+            loginWithRedirect();
+          } else {
+            setSession(token);
+          }
+        }
+      } catch (error) {
+        enqueueSnackbar('Token error!', { variant: 'error' });
+        loginWithRedirect();
+      } finally {
+        setTokenLoading(false);
+      }
+    };
+
+    checkToken();
+  }, [isAuthenticated, getAccessTokenSilently, loginWithRedirect]);
+
+  if (isLoading || tokenLoading) {
     return (
       <Box
         sx={{
@@ -35,11 +61,7 @@ const ProtectedRoute = ({ children }) => {
         }}
       >
         <h2>Welcome to Fidenz Weather Dashboard</h2>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => loginWithRedirect()}
-        >
+        <Button variant="contained" color="primary" onClick={() => loginWithRedirect()}>
           Login to Continue
         </Button>
       </Box>

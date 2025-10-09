@@ -3,9 +3,19 @@ html, body, #root {
   width: 100%;
   margin: 0;
   padding: 0;
-  background: none;
   font-family: 'Poppins', 'Roboto', sans-serif;
+
+  /* Background setup */
+  background-image:
+  url('src/assets/Cloudy1.svg'),
+  linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+  background-attachment: fixed; /* keeps it static when scrolling */
 }
+
 
 /* ensure MUI container won't add side paddings we don't want */
 .MuiContainer-root {

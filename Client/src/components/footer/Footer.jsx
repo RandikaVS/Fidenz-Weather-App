@@ -18,7 +18,7 @@ export default function Footer() {
       }}
     >
       <Typography variant="body2">
-        © {new Date().getFullYear()} My Weather App. Develop By Sahan Randika. All rights reserved.
+        © {new Date().getFullYear()} Fidenz Weather App. Develop By Sahan Randika. All rights reserved.
       </Typography>
     </Box>
   );

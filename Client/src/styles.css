@@ -16,7 +16,6 @@ html, body, #root {
 }
 
 
-/* ensure MUI container won't add side paddings we don't want */
 .MuiContainer-root {
   padding-left: 16px;
   padding-right: 16px;

@@ -56,8 +56,11 @@ const ProtectedRoute = ({ children }) => {
           justifyContent: "center",
           flexDirection: "column",
           gap: 2,
-          bgcolor: "#0A1929",
           color: "white",
+          backgroundImage:`url('src/assets/Cloudy2.svg')`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center bottom',
         }}
       >
         <h2>Welcome to Fidenz Weather Dashboard</h2>

@@ -5,7 +5,6 @@ html, body, #root {
   padding: 0;
   font-family: 'Poppins', 'Roboto', sans-serif;
 
-  /* Background setup */
   background-image:
   url('src/assets/Cloudy1.svg'),
   linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
@@ -13,7 +12,7 @@ html, body, #root {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center bottom;
-  background-attachment: fixed; /* keeps it static when scrolling */
+  background-attachment: fixed;
 }
 
 

@@ -41,7 +41,8 @@ export default function ProtectedLayout() {
   if (isLoading || tokenLoading) {
     return (
       <Box sx={{ height: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <CircularProgress /> // Loading spinner
+        {/* Loading spinner */}
+        <CircularProgress /> 
       </Box>
     );
   }

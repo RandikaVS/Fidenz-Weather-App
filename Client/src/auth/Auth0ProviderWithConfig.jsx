@@ -59,7 +59,8 @@ const Auth0ProviderWithConfig = ({ children }) => {
         navigate(appState?.returnTo || window.location.pathname);
       }}
     >
-      <Auth0TokenSetter/> // Sets the Auth0 token in Axios headers
+      {/* Sets the Auth0 token in Axios headers */}
+      <Auth0TokenSetter/>
       {children}
     </Auth0Provider>
   );

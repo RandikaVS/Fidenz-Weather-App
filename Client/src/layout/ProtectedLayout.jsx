@@ -78,7 +78,7 @@ export default function ProtectedLayout() {
       <Header />
 
 
-      // Loading overlay when performing background tasks
+      {/* Loading overlay when performing background tasks */}
       {loading && (
         <Box
           sx={{
@@ -98,7 +98,7 @@ export default function ProtectedLayout() {
         </Box>
       )}
 
-      // Main content area where nested routes will be rendered
+      {/* Main content area where nested routes will be rendered */}
       <Box component="main" sx={{ flexGrow: 1, minHeight: "100vh" }}>
         <Outlet />
       </Box>

@@ -9,10 +9,13 @@ import ProtectedLayout from "./layout/ProtectedLayout";
 export default function App() {
   return (
     <BrowserRouter>
-      <SnackbarProvider> // Provides context for snackbars
-        <Auth0ProviderWithConfig> // Auth0 authentication provider
+      {/* Provides context for snackbars */}
+      <SnackbarProvider>
+        {/* Auth0 authentication provider */}
+        <Auth0ProviderWithConfig> 
           <Routes>
-            <Route element={<ProtectedLayout />}> // Layout for protected routes
+            {/* Layout for protected routes */}
+            <Route element={<ProtectedLayout />}> 
               <Route
                 path="/"
                 element={<Dashboard />}

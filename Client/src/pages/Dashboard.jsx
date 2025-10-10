@@ -11,6 +11,7 @@ export default function Dashboard() {
   const [weatherList, setWeatherList] = useState([]);
   
 
+  // Function to fetch all weather data
   const handlefetchAllWeather = async () => {
     try {
       const data = await fetchAllWeather()

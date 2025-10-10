@@ -19,6 +19,7 @@ export default function SnackbarProvider({ children }) {
   const notistackRef = useRef(null);
 
   return (
+    // Snackbar provider for notifications
     <NotistackProvider
       ref={notistackRef}
       maxSnack={5}

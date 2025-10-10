@@ -20,7 +20,7 @@ import { formatTime } from "src/utils/fomatTime";
 export default function CityDetail() {
 
   const { enqueueSnackbar } = useSnackbar()
-  const { cityId } = useParams();
+  const { cityId } = useParams(); // Get cityId from URL parameters
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -44,6 +44,7 @@ export default function CityDetail() {
     color: "#3498db",
   });
 
+  // Fetch weather data for the city
   const handleFetchCityWeather = async (cityId) => {
     
     try {
@@ -72,7 +73,7 @@ export default function CityDetail() {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // Scroll to top on component mount
   }, []);
 
   useEffect(() => {

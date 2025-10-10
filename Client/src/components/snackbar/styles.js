@@ -2,7 +2,6 @@ import { MaterialDesignContent } from 'notistack';
 
 import { alpha, styled } from '@mui/material/styles';
 
-// ----------------------------------------------------------------------
 
 export const StyledNotistack = styled(MaterialDesignContent)(({ theme }) => {
   const lightMode = theme.palette.mode === 'light';
@@ -28,7 +27,6 @@ export const StyledNotistack = styled(MaterialDesignContent)(({ theme }) => {
   };
 });
 
-// ----------------------------------------------------------------------
 
 export const StyledIcon = styled('span')(({ color, theme }) => ({
   width: 44,

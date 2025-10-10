@@ -5,14 +5,17 @@ import { useSnackbar } from 'src/components/snackbar';
 import { setSession } from "src/utils/session";
 
 const ProtectedRoute = ({ children }) => {
+  // Auth0 hook to manage authentication state
   const { isAuthenticated, isLoading, getAccessTokenSilently, loginWithRedirect } = useAuth0();
   const [tokenLoading, setTokenLoading] = useState(true);
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
+    // Check and set the authentication token
     const checkToken = async () => {
       try {
         if (isAuthenticated) {
+          // Get the access token silently
           const token = await getAccessTokenSilently();
           if (!token) {
             loginWithRedirect();
@@ -31,6 +34,7 @@ const ProtectedRoute = ({ children }) => {
     checkToken();
   }, [isAuthenticated, getAccessTokenSilently, loginWithRedirect]);
 
+  // Show loading spinner while checking authentication
   if (isLoading || tokenLoading) {
     return (
       <Box
@@ -46,6 +50,7 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
+  // If not authenticated, show login prompt
   if (!isAuthenticated) {
     return (
       <Box
@@ -71,6 +76,7 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
+  // If authenticated, render the child components
   return children;
 };
 

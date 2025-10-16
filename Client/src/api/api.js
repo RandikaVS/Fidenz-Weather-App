@@ -6,9 +6,6 @@ import { setSession } from "src/utils/session";
 // Fetch all weather data
 export const fetchAllWeather = async () => {
   const response = await axiosInstance.get(endpoints.getAllWeather);
-
-  const stringify_data = JSON.stringify(response.data)
-  sessionStorage.setItem('weather',stringify_data);
   
   return response.data;
 };

@@ -16,20 +16,14 @@ export default function Dashboard() {
   // Function to fetch all weather data
   const handlefetchAllWeather = async () => {
     try {
-      const session_data = sessionStorage.getItem('weather');
-      const json_data = JSON.parse(session_data)
 
-      if(json_data && json_data.length > 0){
-        console.log("Sewtting weather data fron session storage")
-        setWeatherList(json_data.filter((w) => !w.error));
-      }
-      else{
-        console.log("Calling API to fetch data")
         const data = await fetchAllWeather()
         setWeatherList(data.filter((w) => !w.error));
-      }
       
     } catch (err) {
+      console.log('====================================');
+      console.log(err);
+      console.log('====================================');
       enqueueSnackbar('Unable to get weather data!', { variant: 'error' });
     }
   };

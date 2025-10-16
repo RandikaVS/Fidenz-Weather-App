@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useSnackbar } from 'src/components/snackbar';
 import { CLIENT_ID, DOMAIN, AUDIENCE } from "src/config-global";
 import { setSession } from "src/utils/session";
-import axios from "src/utils/axios";
+// import axios from "src/utils/axios";
+import axiosInstance from "src/utils/axios";
 
 
 const Auth0ProviderWithConfig = ({ children }) => {
@@ -22,8 +23,8 @@ const Auth0ProviderWithConfig = ({ children }) => {
         if (isAuthenticated) {
           try {
             const accessToken = await getAccessTokenSilently();
+            axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
             setSession(accessToken);
-            axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
           } catch (error) {
             enqueueSnackbar('Error setting access token', { variant: 'error' });
           }

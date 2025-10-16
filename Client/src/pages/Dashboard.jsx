@@ -3,10 +3,12 @@ import { Box, Container, Grid, Typography,TextField, Button, useTheme, useMediaQ
 import WeatherCard from "../components/weather-card/WeatherCard";
 import { fetchAllWeather } from "../api/api";
 import { useSnackbar } from 'src/components/snackbar';
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Dashboard() {
 
   const { enqueueSnackbar } = useSnackbar()
+  const { isAuthenticated, isLoading, getAccessTokenSilently, loginWithRedirect } = useAuth0();
 
   const [weatherList, setWeatherList] = useState([]);
   
@@ -14,8 +16,19 @@ export default function Dashboard() {
   // Function to fetch all weather data
   const handlefetchAllWeather = async () => {
     try {
-      const data = await fetchAllWeather()
-      setWeatherList(data.filter((w) => !w.error));
+      const session_data = sessionStorage.getItem('weather');
+      const json_data = JSON.parse(session_data)
+
+      if(json_data && json_data.length > 0){
+        console.log("Sewtting weather data fron session storage")
+        setWeatherList(json_data.filter((w) => !w.error));
+      }
+      else{
+        console.log("Calling API to fetch data")
+        const data = await fetchAllWeather()
+        setWeatherList(data.filter((w) => !w.error));
+      }
+      
     } catch (err) {
       enqueueSnackbar('Unable to get weather data!', { variant: 'error' });
     }

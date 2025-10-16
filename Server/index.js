@@ -2,6 +2,7 @@ const dotenv = require("dotenv");
 const colors = require("colors");
 const express = require('express');
 const cors = require("cors");
+const path = require("path");
 dotenv.config();
 
 const weatherRouter = require('./routes/weather');
@@ -20,9 +21,10 @@ app.use(express.json());
 
 app.use(express.static(path.join(process.cwd(), "public")));
 
-app.get("*", (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(process.cwd(), "public", "index.html"));
 });
+
 
 
 

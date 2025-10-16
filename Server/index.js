@@ -17,10 +17,13 @@ app.use(cors());
 app.use(express.json());
 
 // Serve frontend
-app.use(express.static(path.join(__dirname, "public")));
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "public", "index.html"))
-);
+
+app.use(express.static(path.join(process.cwd(), "public")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(process.cwd(), "public", "index.html"));
+});
+
 
 
 app.use('/api/weather', weatherRouter);

@@ -41,3 +41,9 @@ jobs:
         run: |
           cd Server
           gcloud app deploy --quiet
+
+      - name: Deploy Client to App Engine
+        run: |
+          cd Client
+          gcloud app deploy app.yaml --quiet
+

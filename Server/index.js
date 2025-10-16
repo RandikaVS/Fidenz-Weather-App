@@ -10,11 +10,18 @@ const { errorHandler, notFound } = require("./middleware/errorMiddleware");
 
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 8080;
 
 
 app.use(cors());
 app.use(express.json());
+
+// Serve frontend
+app.use(express.static(path.join(__dirname, "public")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "public", "index.html"))
+);
+
 
 app.use('/api/weather', weatherRouter);
 
@@ -25,6 +32,7 @@ app.listen(
     console.log("Success".green.bold);
   }
 );
+
 
 app.use(errorHandler);
 app.use(notFound);

@@ -6,7 +6,7 @@
     `https://github.com/RandikaVS/Fidenz-Weather-App.git`
 
 ## .env values
-- VITE_API_URL = `http://localhost:4000/api`
+- VITE_API_URL = `http://localhost:8080/api`
 - VITE_AUTH0_CLIENT_ID = `BGmxAUNxdB4YAu9US8vNlWn7hNZjHP0c`
 - OPENWEATHER_KEY : `3165db4e8f07bee4f2d90aab6ae05729`
 - AUTH0_DOMAIN : `dev-7qqo80kikrtj62it.us.auth0.com`

@@ -1,4 +1,4 @@
-name: Deploy to Cloud Run
+name: Deploy to Google Cloud
 
 on:
   push:
@@ -7,33 +7,37 @@ on:
 
 jobs:
   deploy:
-    name: Build & Deploy to Cloud Run
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies (Client + Server)
+        run: |
+          cd Client && npm ci && cd ..
+          cd Server && npm ci && cd ..
+
+      - name: Build Client
+        run: |
+          cd Client && npm run build && cd ..
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
-      - name: Set up Google Cloud SDK
+      - name: Set up gcloud
         uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ secrets.GOOGLE_PROJECT }}
 
-      - name: Build and push Docker image
+      - name: Deploy to Google App Engine
         run: |
-          gcloud builds submit --tag gcr.io/${{ secrets.GOOGLE_PROJECT }}/${{ secrets.SERVICE_NAME }}
-
-      - name: Deploy to Cloud Run
-        run: |
-          gcloud run deploy ${{ secrets.SERVICE_NAME }} \
-            --image gcr.io/${{ secrets.GOOGLE_PROJECT }}/${{ secrets.SERVICE_NAME }} \
-            --region=${{ secrets.GCP_REGION }} \
-            --platform=managed \
-            --allow-unauthenticated \
-            --memory=256Mi \
-            --max-instances=1
+          cd Server
+          gcloud app deploy --quiet

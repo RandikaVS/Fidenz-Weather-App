@@ -1,14 +1,14 @@
 # Step 1: Build frontend
 FROM node:18 AS build
 WORKDIR /app
-COPY client ./client
+COPY client ./Client
 RUN cd client && npm install && npm run build
 
 # Step 2: Setup backend
 FROM node:18
 WORKDIR /app
-COPY server ./server
-COPY --from=build /app/client/dist ./server/public
+COPY server ./Server
+COPY --from=build /app/Client/dist ./Server/public
 WORKDIR /app/server
 RUN npm install
 

@@ -5,12 +5,12 @@ instance_class: F1
 handlers:
   # Serve static files correctly
   - url: /assets
-    static_dir: dist/assets
+    static_dir: public/assets
 
   # Serve main index.html for SPA routes
   - url: /.*
-    static_files: dist/index.html
-    upload: dist/index.html
+    static_files: public/index.html
+    upload: public/index.html
 
 env_variables:
   NODE_ENV: production

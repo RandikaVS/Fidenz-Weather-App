@@ -45,5 +45,9 @@ jobs:
       - name: Deploy Client to App Engine
         run: |
           cd Client
-          gcloud app deploy app.yaml --quiet
+          VITE_AUTH0_DOMAIN=${{ secrets.VITE_AUTH0_DOMAIN }} \
+          VITE_AUTH0_CLIENT_ID=${{ secrets.VITE_AUTH0_CLIENT_ID }} \
+          VITE_AUTH0_AUDIENCE=${{ secrets.VITE_AUTH0_AUDIENCE }} \
+          npm run build
+          cd ..
 

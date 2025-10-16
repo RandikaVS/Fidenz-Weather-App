@@ -3,9 +3,12 @@ env: standard
 instance_class: F1
 
 handlers:
-  # Serve static files correctly
   - url: /assets
     static_dir: public/assets
+    secure: always
+    http_headers:
+      Access-Control-Allow-Origin: "*"
+
 
   # Serve main index.html for SPA routes
   - url: /.*
@@ -23,4 +26,6 @@ env_variables:
 
 automatic_scaling:
   max_instances: 20
+
+  
 

@@ -18,7 +18,7 @@ export default function Dashboard() {
     try {
 
         const data = await fetchAllWeather()
-        setWeatherList(data.filter((w) => !w.error));
+        setWeatherList(data?.filter((w) => !w.error));
       
     } catch (err) {
       console.log('====================================');

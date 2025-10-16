@@ -8,6 +8,8 @@ env_variables:
   VITE_AUTH0_DOMAIN: 'dev-7qqo80kikrtj62it.us.auth0.com'
   VITE_AUTH0_CLIENT_ID: 'BGmxAUNxdB4YAu9US8vNlWn7hNZjHP0c'
   VITE_AUTH0_AUDIENCE: 'https://weather-api'
+  OPENWEATHER_KEY: '3165db4e8f07bee4f2d90aab6ae05729'
+  OPENWEATHER_API_ROOT: 'https://api.openweathermap.org/data/2.5/weather'
 
 automatic_scaling:
   max_instances: 20
